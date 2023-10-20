@@ -9,6 +9,12 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+const jsonContentTypeRequestHeader = (request, response, next) => {
+  request.headers["content-type"] = "application/json";
+  next();
+};
+
+app.use(jsonContentTypeRequestHeader);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

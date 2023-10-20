@@ -10,9 +10,6 @@
   <script>
     fetch("/dispatch", {
       method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify({
         slice: "user",
         action: "getAuthById",
