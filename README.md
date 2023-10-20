@@ -27,7 +27,7 @@ fetch('/api/dispatch', {
 
 ```
 # server
-router.all('/api/dispatch', async (req, res) => {
+router.post('/api/dispatch', async (req, res) => {
   const {slice, action, payload, options} = req.body;
   const {ifAwait, ifInput} = options;
   const rsp = ifAwait ? await [slice][action](payload) : [slice][action](payload);
