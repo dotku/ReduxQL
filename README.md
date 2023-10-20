@@ -7,13 +7,32 @@ Inspired by Redux and GraphQL, we use single point as query point, eg `dispatch`
 ## Usage
 
 ```
+# client
 fetch('/api/dispatch', {
   method: "post",
   body: JSON.stringify({
+    slice: 'User',
     action: 'getAuthById',
     payload: {
       id: "abc-123",
+    },
+    options: {
+      ifAwait: true,
+      ifInput: true
     }
+    
   })
+})
+```
+
+```
+# server
+router.all('/dispatch', async (req, res) => {
+  const {slice, action, payload, options} = req.body;
+  const {ifAwait, ifInput} = options;
+  const rsp = ifAwait ? await [slice][action](payload) : [slice][action](payload);
+  const input = {slice, action, payload, options};
+  const result = ifInput ? {input, rsp} : {rsp};
+  res.json(rsp)
 })
 ```
