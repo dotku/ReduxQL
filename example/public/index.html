@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Express</title>
+  </head>
+
+  <body>
+    <h1>Express</h1>
+    <p>Welcome to Express</p>
+  </body>
+  <script>
+    fetch("/dispatch", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        slice: "user",
+        action: "getAuthById",
+        payload: {
+          id: "abc-123",
+        },
+        options: {
+          ifAwait: false,
+          ifInput: true,
+        },
+      }),
+    })
+      .then((rsp) => rsp.json())
+      .then(console.log);
+  </script>
+</html>
