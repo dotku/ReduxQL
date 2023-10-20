@@ -27,6 +27,16 @@ fetch('/api/dispatch', {
 
 ```
 # server
+
+class User {
+  const data = [{id: "abc-123", userName: "userName"}]
+  getAuthById(id) {
+    return data.find((item) => item.id === id)
+  }
+}
+
+const User = new User();
+
 router.post('/api/dispatch', async (req, res) => {
   const {slice, action, payload, options} = req.body;
   const {ifAwait, ifInput} = options;
