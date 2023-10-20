@@ -9,8 +9,11 @@ then use `action` and `payload` to feed the request.
 
 ```js
 # client
-fetch('/api/dispatch', {
+fetch('/dispatch', {
   method: "post",
+  headers: {
+    "Content-Type": "application/json",
+  },
   body: JSON.stringify({
     slice: 'User',
     action: 'getAuthById',
